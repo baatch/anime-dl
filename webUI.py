@@ -7,6 +7,9 @@ from anime_dl.utils.logger import Logger
 # disable https logs
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
+# disable matplotlib debug logs
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
+
 logger = Logger()
 logger.reset_webui_log()
 
@@ -26,7 +29,7 @@ with gr.Blocks(
         container=True,
         lines=15,
     )
-    webui.load(fn=logger.read_webui_log, inputs=None, outputs=logs)
+    webui.load(fn=logger.read_webui_log, inputs=None, outputs=logs, every=1)
 
 if __name__ == "__main__":
-    webui.launch()
+    webui.queue().launch()

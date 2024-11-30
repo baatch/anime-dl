@@ -26,7 +26,7 @@ with gr.Blocks(
         container=True,
         lines=15,
     )
-    webui.load(logger.read_webui_log, None, logs, every=1)
+    webui.load(fn=logger.read_webui_log, inputs=None, outputs=logs)
 
 if __name__ == "__main__":
     webui.launch()
